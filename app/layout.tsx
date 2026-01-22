@@ -26,13 +26,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen flex flex-col overflow-hidden`}
       >
-        <nav className="flex gap-4 p-4 border-b border-gray-200">
+        <nav className="flex gap-4 p-4 border-b border-gray-200 flex-none">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
         </nav>
+        <div className="flex-grow overflow-auto">
         {children}
+        </div>
       </body>
     </html>
   );
