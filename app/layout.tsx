@@ -31,6 +31,7 @@ export default function RootLayout({
         <nav className="flex gap-4 p-4 border-b border-gray-200 flex-none">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
+          <Link href="/posts">Posts</Link>
         </nav>
         <div className="flex-grow overflow-auto">
         {children}

@@ -21,6 +21,7 @@
     "paths": {
       "@/*": ["./*"],
       "@/app/*": ["./app/*"],
+      "@/components/*": ["./app/components/*"],
     }
   },
   "include": [
