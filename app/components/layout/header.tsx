@@ -1,16 +1,23 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import NavLink from './nav-link';
+
+const navItems = [
+  { href: '/about', label: 'About' },
+  { href: '/posts', label: 'Posts' },
+  { href: '/meals', label: 'Meals' },
+  { href: '/community', label: 'Community' },
+] 
 
 const Header = () => {
   return (
     <nav className="flex items-center gap-4 p-4 border-b border-gray-200 flex-none text-white">
-    <Link href="/">
-        <Image src={'/images/logo.png'} alt="logo" width={30} height={30} priority />
-    </Link>
-    <Link href="/about">About</Link>
-    <Link href="/posts">Posts</Link>
-    <Link href="/meals">Meals</Link>
-    <Link href="/community">Community</Link>
+      <Link href="/">
+          <Image src={'/images/logo.png'} alt="logo" width={50} height={50} priority />
+      </Link>
+      {navItems.map((item) => (
+        <NavLink key={item.href} href={item.href} label={item.label} />
+      ))}
   </nav>
   )
 }
