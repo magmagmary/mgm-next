@@ -1,9 +1,13 @@
-import Link from 'next/link'
+import Link from 'next/link';
+import Image from 'next/image';
+import logo from '@/assets/logo.png';
 
 const Header = () => {
   return (
-    <nav className="flex gap-4 p-4 border-b border-gray-200 flex-none text-white">
-    <Link href="/">Home</Link>
+    <nav className="flex items-center gap-4 p-4 border-b border-gray-200 flex-none text-white">
+    <Link href="/">
+        <Image src={logo} alt="logo" width={30} height={30} priority />
+    </Link>
     <Link href="/about">About</Link>
     <Link href="/posts">Posts</Link>
     <Link href="/meals">Meals</Link>
