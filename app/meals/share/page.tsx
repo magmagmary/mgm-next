@@ -23,7 +23,7 @@ const MealsSharePage = () => {
             <div className="flex gap-4">
               <Field className="flex-1">
                 <FieldLabel htmlFor="name">Your name</FieldLabel>
-                <Input id="name" name="name" required />
+                <Input id="name" name="name" />
               </Field>
               <Field className="flex-1">
                 <FieldLabel htmlFor="email">Your email</FieldLabel>
