@@ -3,6 +3,9 @@ import MealsGrid from "./components/meals-grid"
 import { getMeals } from "@/lib/service/meals";
 import { Suspense } from "react";
 import { Button } from "../components/ui/button";
+import { Metadata } from "next";
+
+
 
 const Meals = async () => {
   const meals = await getMeals();
