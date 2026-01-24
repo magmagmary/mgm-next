@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Meal } from "@/lib/types/shared-types"
+import { Button } from "@/app/components/ui/button"
 
 const MealItem = ({ meal }: { meal: Meal }) => {
   return (
@@ -25,14 +26,13 @@ const MealItem = ({ meal }: { meal: Meal }) => {
       </header>
       <div className="flex flex-1 min-h-0 flex-col justify-between">
         <p className="m-0 pt-4 px-4">{meal.summary}</p>
-        <div className="p-4 text-right">
+        <Button className="w-fit ms-auto mb-4 me-4" size={'sm'}>
           <Link
             href={`/meals/${meal.slug}`}
-            className="mt-4 inline-block rounded-lg bg-[linear-gradient(90deg,#f9572a,#ff9b05)] px-4 py-2 font-bold text-white no-underline hover:bg-[linear-gradient(90deg,#fd4715,#f9b241)] hover:shadow-[0_0_12px_rgba(242,100,18,0.8)] active:bg-[linear-gradient(90deg,#fd4715,#f9b241)] active:shadow-[0_0_12px_rgba(242,100,18,0.8)]"
           >
             View Details
           </Link>
-        </div>
+        </Button>
       </div>
     </article>
   )
