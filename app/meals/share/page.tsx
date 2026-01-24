@@ -2,6 +2,7 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import ImagePicker from "../components/image-picker";
 
 const MealsSharePage = () => {
   return (
@@ -45,8 +46,8 @@ const MealsSharePage = () => {
                 required
               />
             </Field>
+            <ImagePicker id="image" name="image" />
           </FieldGroup>
-
             <Button type="submit" size="lg" className="mt-4">
               Share Meal
             </Button>
