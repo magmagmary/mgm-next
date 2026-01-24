@@ -3,8 +3,6 @@ import Image from 'next/image';
 import NavLink from './nav-link';
 
 const navItems = [
-  { href: '/about', label: 'About' },
-  { href: '/posts', label: 'Posts' },
   { href: '/meals', label: 'Meals' },
   { href: '/community', label: 'Community' },
 ] 
