@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button";
 const MealsSharePage = () => {
   return (
     <>
-      <header className="flex flex-col gap-12 mt-12 mb-20 mx-auto w-[90%] max-w-300 text-[#ddd6cb] text-2xl">
+      <header className="flex flex-col gap-12 mt-12 mb-20 mx-auto w-[90%] max-w-300 text-foreground text-2xl">
         <h1 className="font-[Montserrat,sans-serif]">
           Share your{" "}
-          <span className="bg-linear-to-r from-[#f9572a] to-[#ff8a05] bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
             favorite meal
           </span>
         </h1>
