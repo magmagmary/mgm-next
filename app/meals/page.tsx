@@ -1,6 +1,17 @@
 import Link from "next/link"
+import MealsGrid from "./components/meals-grid"
 
 const MealsPage = () => {
+
+  const meals = [
+    {
+      title: "Meal 1",
+      slug: "meal-1",
+      image: "/images/meal-1.jpg",
+      summary: "This is a summary of meal 1",
+      creator: "John Doe"
+    }
+  ]
   return (
     <>
       <header className="flex flex-col gap-12 mt-12 mb-20 mx-auto w-[90%] max-w-300 text-foreground text-2xl">
@@ -21,7 +32,9 @@ const MealsPage = () => {
           </Link>
         </p>
       </header>
-      <main></main>
+      <main className="w-[90%] max-w-300 mx-auto mb-4">
+        <MealsGrid meals={meals} />
+      </main>
    </>
   )
 }
