@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { createMeal } from "../service/meals";
 import { NewMeal } from "../types/shared-types";
 import { z } from "zod";
+import { revalidatePath } from "next/cache";
 
 const MealSchema = z.object({
     name: z.string().min(1 , { message: "Name is required" }),
@@ -39,6 +40,8 @@ export const shareMeal = async ( _previousState: { message: string | null }, for
 
         await createMeal(data);
     
+        revalidatePath('/meals' , 'layout'); // This will revalidate the meals page and all its child pages
+
         redirect('/meals');
 
         return {
