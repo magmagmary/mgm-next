@@ -1,11 +1,15 @@
 import Link from "next/link"
 import MealsGrid from "./components/meals-grid"
 import { getMeals } from "@/lib/service/meals";
+import { Suspense } from "react";
 
-const MealsPage = async () => {
-
+const Meals = async () => {
   const meals = await getMeals();
 
+  return <MealsGrid meals={meals} />
+}
+
+const MealsPage = async () => {
   return (
     <>
       <header className="flex flex-col gap-12 mt-12 mb-20 mx-auto w-[90%] max-w-300 text-foreground text-2xl">
@@ -26,8 +30,10 @@ const MealsPage = async () => {
           </Link>
         </p>
       </header>
-      <main className="w-[90%] max-w-300 mx-auto mb-4">
-        <MealsGrid meals={meals} />
+      <main className="w-[90%] max-w-300 mx-auto mb-4 text-amber-800">
+        <Suspense fallback={<p className="text-center text-2xl font-bold">Fetching meals...</p>}>
+          <Meals />
+        </Suspense>
       </main>
    </>
   )
