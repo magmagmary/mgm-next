@@ -1,7 +1,12 @@
+import NewsList from "@/app/components/shared/news-list";
+import { getLatestNews } from "@/lib/utils/news";
+
 const LatestNewsPage = () => {
+  const latestNews = getLatestNews();
+
   return (
-    <div>
-      <h1>Latest News</h1>
+    <div className="flex flex-col gap-4 pt-4">
+      <NewsList news={latestNews} />
     </div>
   )
 }

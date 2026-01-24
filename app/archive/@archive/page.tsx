@@ -1,6 +1,7 @@
 const ArchivePage = () => {
+
   return (
-    <div>ArchivePage</div>
+    <></>
   )
 }
 
