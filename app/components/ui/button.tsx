@@ -9,7 +9,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default:
+          "border-0 bg-linear-to-r from-primary to-secondary text-xl text-white cursor-pointer hover:from-primary/90 hover:to-secondary/90 focus-visible:from-primary/90 focus-visible:to-secondary/90 disabled:!opacity-100 disabled:bg-muted disabled:text-muted-foreground disabled:cursor-not-allowed",
         destructive:
           "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
@@ -29,6 +30,13 @@ const buttonVariants = cva(
         "icon-lg": "size-10",
       },
     },
+    compoundVariants: [
+      {
+        variant: "default",
+        size: "default",
+        class: "!h-auto !py-3 !px-8 !rounded-sm",
+      },
+    ],
     defaultVariants: {
       variant: "default",
       size: "default",
