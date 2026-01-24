@@ -3,26 +3,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import ImagePicker from "../components/image-picker";
-import { useCallback } from "react";
+import { shareMeal } from "@/lib/actions/meals";
 
 const MealsSharePage = () => {
-
-  const shareMeal = useCallback(async (formData: FormData) => {
-    'use server';
-
-    const name = formData.get("name") as string;
-    const email = formData.get("email") as string;
-    const title = formData.get("title") as string;
-    const summary = formData.get("summary") as string;
-    const instructions = formData.get("instructions") as string;
-    const image = formData.get("image") as string;
-
-    const meal = { title, summary, instructions, image, name, email };
-
-    console.log(meal);
-   
-  }, []);
-
   return (
     <>
       <header className="flex flex-col gap-12 mt-12 mb-20 mx-auto w-[90%] max-w-300 text-foreground text-2xl">
