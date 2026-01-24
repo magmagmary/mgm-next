@@ -1,0 +1,41 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.fixAll.eslint": "always"
+  },
+
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+
+  // Enforce Prettier formatting in TypeScript files
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  // Enforce Prettier formatting in JavaScript files
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  // Enforce Prettier formatting in TSX (React Native & React)
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  // Enforce Prettier formatting in JSX files (Web React)
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  // Only run Prettier if a config file exists (prevents misfires)
+  "prettier.requireConfig": true,
+  "sonarlint.connectedMode.project": {
+    "connectionId": "https-sonarqube-adam-int-planetromeo-com",
+    "projectKey": "frontend_react-native-romeo-2_d2fc5a00-2b04-4a42-be76-3eea4b8275e9"
+  }
+}
