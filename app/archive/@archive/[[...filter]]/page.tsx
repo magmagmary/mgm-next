@@ -12,10 +12,16 @@ const SpecificYearArchivePage = async ({ params }: { params: Promise<{ filter?: 
   const months: number[] =getAvailableNewsMonths(+year!);
   
   if(year && !month) {
+    if(!years.includes(+year)) {
+      throw new Error('Invalid year');
+    }
     news = getNewsForYear(+year);
   }
 
   if(year && month) {
+    if(!months.includes(+month) || !years.includes(+year)) {
+      throw new Error('Invalid year or month');
+    }
     news = getNewsForYearAndMonth(+year, +month);
   }
 
