@@ -2,6 +2,17 @@ import { redirect, notFound } from 'next/navigation';
 import Image from 'next/image';
 import { getMealBySlug } from '@/lib/service/meals';
 
+
+const generateMetadata = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params;
+
+  if (!slug) {
+    return { title: 'Meal not found' };
+  }
+
+  return { title: `${slug} meal details` };
+}
+
 const MealsDetailPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
 
@@ -50,5 +61,7 @@ const MealsDetailPage = async ({ params }: { params: Promise<{ slug: string }> }
     </>
   );
 };
+
+export { generateMetadata }
 
 export default MealsDetailPage;
