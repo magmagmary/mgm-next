@@ -12,3 +12,8 @@ export const getMeals = async (): Promise<Meal[]> => {
    return db.prepare('SELECT * FROM meals').all() as Meal[];
 }
 
+export const getMealBySlug = async (slug: string): Promise<Meal | undefined> => {
+   await new Promise(resolve => setTimeout(resolve, PROMISE_DELAY));
+   return db.prepare('SELECT * FROM meals WHERE slug = ?').get(slug) as Meal | undefined;
+}
+
