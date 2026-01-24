@@ -3,8 +3,26 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import ImagePicker from "../components/image-picker";
+import { useCallback } from "react";
 
 const MealsSharePage = () => {
+
+  const shareMeal = useCallback(async (formData: FormData) => {
+    'use server';
+
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const title = formData.get("title") as string;
+    const summary = formData.get("summary") as string;
+    const instructions = formData.get("instructions") as string;
+    const image = formData.get("image") as string;
+
+    const meal = { title, summary, instructions, image, name, email };
+
+    console.log(meal);
+   
+  }, []);
+
   return (
     <>
       <header className="flex flex-col gap-12 mt-12 mb-20 mx-auto w-[90%] max-w-300 text-foreground text-2xl">
@@ -17,7 +35,7 @@ const MealsSharePage = () => {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className="w-[90%] max-w-300 my-12 mx-auto text-white">
-        <form className="max-w-200">
+        <form className="max-w-200" action={shareMeal}>
           <FieldGroup>
             <div className="flex gap-4">
               <Field className="flex-1">

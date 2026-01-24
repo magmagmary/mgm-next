@@ -33,7 +33,7 @@ const ImagePicker = ({ id, name }: { id: string, name: string }) => {
 
   return (
     <Field className="flex flex-col gap-4 relative w-40">
-        <Input ref={ref} id={id} name={name} type="file" accept="image/*" className="w-full sr-only" onChange={handleChange} />
+        <Input ref={ref} id={id} name={name} type="file" accept="image/*" className="w-full sr-only" onChange={handleChange} required/>
         {image ? (
             <div className="relative h-40" >
                 <Image src={image} alt="Image" fill className="object-cover rounded-md cursor-pointer"/>
