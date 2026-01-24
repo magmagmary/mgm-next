@@ -1,11 +1,19 @@
+'use client';
+
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import ImagePicker from "../components/image-picker";
-import { shareMeal } from "@/lib/actions/meals";
+import { shareMeal, ShareMealState } from "@/lib/actions/meals";
 import  FormSubmissionBtn from "../components/form-submission-btn";
+import { useActionState } from "react";
 
 const MealsSharePage = () => {
+  const [formState, formAction] = useActionState<ShareMealState, FormData>(shareMeal ,{
+    message:null
+  } 
+  );
+
   return (
     <>
       <header className="flex flex-col gap-12 mt-12 mb-20 mx-auto w-[90%] max-w-300 text-foreground text-2xl">
@@ -18,7 +26,7 @@ const MealsSharePage = () => {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className="w-[90%] max-w-300 my-12 mx-auto text-white">
-        <form className="max-w-200" action={shareMeal}>
+        <form className="max-w-200" action={formAction}>
           <FieldGroup>
             <div className="flex gap-4">
               <Field className="flex-1">
@@ -50,6 +58,7 @@ const MealsSharePage = () => {
             <ImagePicker id="image" name="image" />
           </FieldGroup>
           <FormSubmissionBtn />
+          {formState.message && <p className="text-red-500 font-bold my-3">{formState.message}</p>}
         </form>
       </main>
     </>

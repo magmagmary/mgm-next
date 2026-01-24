@@ -6,15 +6,19 @@ import { NewMeal } from "../types/shared-types";
 import { z } from "zod";
 
 const MealSchema = z.object({
-    name: z.string().min(1),
-    email: z.string().email(),
-    title: z.string().min(1),
-    summary: z.string().min(1),
-    instructions: z.string().min(1),
-    image: z.instanceof(File),
+    name: z.string().min(1 , { message: "Name is required" }),
+    email: z.string().email({ message: "Invalid email address" }),
+    title: z.string().min(1 , { message: "Title is required" }),
+    summary: z.string().min(1 , { message: "Summary is required" }),
+    instructions: z.string().min(1 , { message: "Instructions are required" }),
+    image: z.instanceof(File , { message: "Image is required" }),
 })
 
-export const shareMeal = async (formData: FormData) => {
+export type ShareMealState = {
+    message: string | null;
+}
+
+export const shareMeal = async ( _previousState: { message: string | null }, formData: FormData) => {
         const name = formData.get("name") as string;
         const email = formData.get("email") as string;
         const title = formData.get("title") as string;
@@ -24,14 +28,20 @@ export const shareMeal = async (formData: FormData) => {
     
         const meal: NewMeal = { title, summary, instructions, image, name, email };
         
-        
         const {data , error} = MealSchema.safeParse(meal);
         
         if(error) {
-            console.error(error.message);
-           throw new Error(error.message);
+            // throw new Error(error.message); // This will put the entire app in the error state
+            return {
+                message: error.issues.map(issue => issue.message).join(', '),
+            }
         }
+
         await createMeal(data);
     
         redirect('/meals');
+
+        return {
+            message: 'Meal shared successfully',
+        }
 };
