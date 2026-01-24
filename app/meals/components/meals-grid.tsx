@@ -1,5 +1,5 @@
-import { Meal } from "../types"
 import MealItem from "./meal-item"
+import { Meal } from "@/lib/types/shared-types"
 
 const MealsGrid = ({meals}: {meals: Meal[]}) => {
   return (

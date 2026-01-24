@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Meal } from "../types"
+import { Meal } from "@/lib/types/shared-types"
 
 const MealItem = ({ meal }: { meal: Meal }) => {
   return (
