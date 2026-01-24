@@ -4,6 +4,7 @@ import NavLink from './nav-link';
 
 const navItems = [
   { href: '/news', label: 'News' },
+  { href: '/archive', label: 'Archive' },
 ] 
 
 const Header = () => {
