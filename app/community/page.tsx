@@ -5,7 +5,7 @@ const CommunityPage = () => {
     <>
       <header className="flex flex-col gap-12 mx-auto my-12 mb-20 w-[90%] max-w-300 text-foreground text-2xl text-center">
         <h1 className="font-['Montserrat',sans-serif]">
-          One shared passion: <span className="bg-linear-to-r from-[#f9572a] to-[#ff8a05] bg-clip-text text-transparent">Food</span>
+          One shared passion: <span className="bg-linear-to-r from-primary to-destructive bg-clip-text text-transparent">Food</span>
         </h1>
         <p>Join our community and share your favorite recipes!</p>
       </header>
