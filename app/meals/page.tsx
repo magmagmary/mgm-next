@@ -1,17 +1,11 @@
 import Link from "next/link"
 import MealsGrid from "./components/meals-grid"
+import { getMeals } from "@/lib/service/meals";
 
-const MealsPage = () => {
+const MealsPage = async () => {
 
-  const meals = [
-    {
-      title: "Meal 1",
-      slug: "meal-1",
-      image: "/images/meal-1.jpg",
-      summary: "This is a summary of meal 1",
-      creator: "John Doe"
-    }
-  ]
+  const meals = await getMeals();
+
   return (
     <>
       <header className="flex flex-col gap-12 mt-12 mb-20 mx-auto w-[90%] max-w-300 text-foreground text-2xl">

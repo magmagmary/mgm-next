@@ -1,7 +1,8 @@
 import Database from "better-sqlite3";
 import { Meal } from "@/lib/types/shared-types";
+import { DB_NAME } from "@/lib/constants/db";
 
-const db = new Database("meals.db");
+const db = new Database(DB_NAME);
 
 const dummyMeals: Meal[] = [
   {
