@@ -1,3 +1,4 @@
+
 import { notFound } from "next/navigation";
 import { DUMMY_NEWS } from "@/lib/mockData/mockNews";
 import Image from "next/image";
@@ -19,7 +20,7 @@ const NewsImagePage = async ({ params }: { params: Promise<{ slug: string }> }) 
 
   return (
     <Dialog open >
-      <DialogContent showCloseButton={false}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>{news.title}</DialogTitle>
           <DialogDescription>
