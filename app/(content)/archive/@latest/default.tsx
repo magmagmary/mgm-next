@@ -1,8 +1,8 @@
 import NewsList from "@/app/components/shared/news-list";
 import { getLatestNews } from "@/lib/utils/news";
 
-const LatestNewsPage = () => {
-  const latestNews = getLatestNews();
+const LatestNewsPage = async () => {
+  const latestNews = await getLatestNews();
 
   return (
     <div className="flex flex-col gap-4 pt-4">

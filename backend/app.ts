@@ -42,6 +42,38 @@ app.get('/news/:slug', (req, res) => {
   res.json(news);
 });
 
+app.get('/available-news-years', (_req, res) => {
+  const years = db.prepare("SELECT DISTINCT strftime('%Y', date) as year FROM news").all();
+  const yearsArray = (years as { year: string }[]).map((year) => +year.year);
+  res.json(yearsArray);
+});
+
+app.get('/available-news-months/:year', (req, res) => {
+  const { year } = req.params;
+  const months = db.prepare("SELECT DISTINCT strftime('%m', date) as month FROM news WHERE strftime('%Y', date) = ?").all(year);
+  const monthsArray = (months as { month: string }[]).map((month) => +month.month);
+  res.json(monthsArray);
+});
+
+app.get('/news-for-year/:year', (req, res) => {
+  const { year } = req.params;
+  const news = db.prepare("SELECT * FROM news WHERE strftime('%Y', date) = ? ORDER BY date DESC").all(year);
+  res.json(news);
+});
+
+app.get('/news-for-year-and-month/:year/:month', (req, res) => {
+  const { year, month } = req.params;
+  const monthPadded = month.padStart(2, '0');
+
+  const news = db.prepare("SELECT * FROM news WHERE strftime('%Y', date) = ? AND strftime('%m', date) = ? ORDER BY date DESC").all(year, monthPadded);
+  res.json(news);
+});
+
+app.get('/latest-news', (_req, res) => {
+  const news = db.prepare("SELECT * FROM news ORDER BY date DESC LIMIT 3").all();
+  res.json(news);
+});
+
 initDb();
 
 app.listen(8080);

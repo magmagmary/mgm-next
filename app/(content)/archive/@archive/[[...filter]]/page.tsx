@@ -1,28 +1,30 @@
 import NewsList from '@/app/components/shared/news-list';
-import { News } from '@/app/news/types';
+import { News } from '@/lib/types/shared-types';
 import { getAvailableNewsMonths, getAvailableNewsYears, getNewsForYear, getNewsForYearAndMonth } from '@/lib/utils/news';
 import Link from 'next/link';
 
 const SpecificYearArchivePage = async ({ params }: { params: Promise<{ filter?: string[] }> }) => {
   const { filter } = await params;
   const [year, month] = filter || [];
-  const years = getAvailableNewsYears();
+  const years = await getAvailableNewsYears();
 
   let news: News[] = [];
-  const months: number[] =getAvailableNewsMonths(+year!);
+  const months: number[] = await getAvailableNewsMonths(+year!);
   
   if(year && !month) {
     if(!years.includes(+year)) {
       throw new Error('Invalid year');
     }
-    news = getNewsForYear(+year);
+    news = await getNewsForYear(+year);
   }
 
   if(year && month) {
     if(!months.includes(+month) || !years.includes(+year)) {
       throw new Error('Invalid year or month');
     }
-    news = getNewsForYearAndMonth(+year, +month);
+
+    news = await getNewsForYearAndMonth(+year, +month);
+    console.log('news', news);
   }
 
   return <div className="flex flex-col gap-4">

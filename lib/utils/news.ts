@@ -19,43 +19,47 @@ export async function getNewsBySlug(slug: string): Promise<News> {
   return news;
 }
 
-export function getLatestNews(): News[] {
-  return DUMMY_NEWS.slice(0, 3);
+export async function getLatestNews(): Promise<News[]> {
+  const response = await fetch(`http://localhost:8080/latest-news`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch news');
+  }
+  const news = await response.json();
+  return news;
 }
 
-export function getAvailableNewsYears(): number[] {
-  return DUMMY_NEWS.reduce((years, news) => {
-    const year = new Date(news.date).getFullYear();
-    if (!years.includes(year)) {
-      years.push(year);
-    }
-    return years;
-  }, [] as number []).sort((a, b) => b - a);
+export async function getAvailableNewsYears(): Promise<number[]> {
+  const response = await fetch(`http://localhost:8080/available-news-years`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch news');
+  }
+  const years = await response.json();
+  return years;
 }
 
-export function getAvailableNewsMonths(year: number): number[] {
-  return DUMMY_NEWS.reduce((months, news) => {
-    const newsYear = new Date(news.date).getFullYear();
-    if (newsYear === +year) {
-      const month = new Date(news.date).getMonth();
-      if (!months.includes(month)) {
-        months.push(month + 1);
-      } 
-    }
-    return months;
-  }, [] as number []).sort((a, b) => b - a);
+export async function getAvailableNewsMonths(year: number): Promise<number[]> {
+  const response = await fetch(`http://localhost:8080/available-news-months/${year}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch news');
+  }
+  const months = await response.json();
+  return months.map((month: string) => parseInt(month));
 }
 
-export function getNewsForYear(year: number): News[] {
-  return DUMMY_NEWS.filter(
-    (news) => new Date(news.date).getFullYear() === +year
-  );
+export async function getNewsForYear(year: number): Promise<News[]> {
+  const response = await fetch(`http://localhost:8080/news-for-year/${year}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch news');
+  }
+  const news = await response.json();
+  return news;
 }
 
-export function getNewsForYearAndMonth(year: number, month: number): News[] {
-  return DUMMY_NEWS.filter((news) => {
-    const newsYear = new Date(news.date).getFullYear();
-    const newsMonth = new Date(news.date).getMonth() + 1;
-    return newsYear === +year && newsMonth === +month;
-  });
+export async function getNewsForYearAndMonth(year: number, month: number): Promise<News[]> {
+  const response = await fetch(`http://localhost:8080/news-for-year-and-month/${year}/${month}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch news');
+  }
+  const news = await response.json();
+  return news;
 }
