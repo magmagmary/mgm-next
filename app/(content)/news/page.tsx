@@ -4,6 +4,9 @@ import { News } from "@/lib/types/shared-types";
 
 const getNews = async(): Promise<News[]> => {
   const response = await fetch('http://localhost:8080/news');
+  if (!response.ok) {
+    throw new Error('Failed to fetch news');
+  }
   const news = await response.json();
   return news;
 }

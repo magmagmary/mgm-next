@@ -1,8 +1,16 @@
 import { notFound } from "next/navigation";
-import { DUMMY_NEWS } from "@/lib/mockData/mockNews";
 import Image from "next/image";
 import Link from "next/link";
 import { News } from "@/lib/types/shared-types";
+
+const getNewsBySlug = async(slug: string): Promise<News> => {
+  const response = await fetch(`http://localhost:8080/news/${slug}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch news');
+  }
+  const news = await response.json();
+  return news;
+}
 
 const NewsDetailPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
@@ -11,7 +19,7 @@ const NewsDetailPage = async ({ params }: { params: Promise<{ slug: string }> })
     return notFound();
   }
 
-  const news = DUMMY_NEWS.find((news:News) => news.slug === slug);
+  const news = await getNewsBySlug(slug);
 
   if (!news) {
     return notFound();
