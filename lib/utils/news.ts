@@ -1,4 +1,4 @@
-import { News } from "@/app/news/types";
+import { News } from "@/lib/types/shared-types";
 import { DUMMY_NEWS } from "@/lib/mockData/mockNews";
 
 export function getAllNews(): News[] {

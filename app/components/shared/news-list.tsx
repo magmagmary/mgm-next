@@ -1,4 +1,4 @@
-import { News } from "@/app/news/types"
+import { News } from "@/lib/types/shared-types"
 import Link from "next/link"
 import Image from "next/image"
 

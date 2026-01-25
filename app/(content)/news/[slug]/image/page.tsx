@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { DUMMY_NEWS } from "@/lib/mockData/mockNews";
 import Image from "next/image";
-import { News } from "@/app/news/types";
 import { Separator } from "@radix-ui/react-separator";
+import { News } from "@/lib/types/shared-types";
 
 const NewsImagePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;

@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
-import { News } from "../types";
 import { DUMMY_NEWS } from "@/lib/mockData/mockNews";
 import Image from "next/image";
 import Link from "next/link";
+import { News } from "@/lib/types/shared-types";
 
 const NewsDetailPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;

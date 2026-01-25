@@ -1,8 +1,8 @@
 
 import { notFound } from "next/navigation";
 import { DUMMY_NEWS } from "@/lib/mockData/mockNews";
-import { News } from "@/app/news/types";
-import NewsModal from "@/app/news/components/news-modal";
+import { News } from "@/lib/types/shared-types";
+import NewsModal from "../../../components/news-modal";
 
 const NewsImagePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
