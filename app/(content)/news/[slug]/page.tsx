@@ -1,16 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { News } from "@/lib/types/shared-types";
-
-const getNewsBySlug = async(slug: string): Promise<News> => {
-  const response = await fetch(`http://localhost:8080/news/${slug}`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch news');
-  }
-  const news = await response.json();
-  return news;
-}
+import { getNewsBySlug } from "@/lib/utils/news";
 
 const NewsDetailPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;

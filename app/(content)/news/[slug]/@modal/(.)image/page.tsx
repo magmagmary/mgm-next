@@ -1,8 +1,7 @@
 
 import { notFound } from "next/navigation";
-import { DUMMY_NEWS } from "@/lib/mockData/mockNews";
-import { News } from "@/lib/types/shared-types";
 import NewsModal from "../../../components/news-modal";
+import { getNewsBySlug } from "@/lib/utils/news";
 
 const NewsImagePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
@@ -11,11 +10,7 @@ const NewsImagePage = async ({ params }: { params: Promise<{ slug: string }> }) 
     return notFound();
   }
 
-  const news = DUMMY_NEWS.find((news:News) => news.slug === slug);
-
-  if (!news) {
-    return notFound();
-  }
+  const news = await getNewsBySlug(slug);
 
   return (
    <NewsModal news={news} />

@@ -1,18 +1,9 @@
 import { Separator } from "@radix-ui/react-separator";
 import NewsList from "@/components/shared/news-list";
-import { News } from "@/lib/types/shared-types";
-
-const getNews = async(): Promise<News[]> => {
-  const response = await fetch('http://localhost:8080/news');
-  if (!response.ok) {
-    throw new Error('Failed to fetch news');
-  }
-  const news = await response.json();
-  return news;
-}
+import { getAllNews } from "@/lib/utils/news";
 
 const NewsPage = async() => {
-  const news = await getNews();
+  const news = await getAllNews();
 
   return (
     <div className="flex flex-col items-center justify-center h-full max-w-5xl mx-auto">

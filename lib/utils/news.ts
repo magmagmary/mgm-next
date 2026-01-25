@@ -1,8 +1,22 @@
 import { News } from "@/lib/types/shared-types";
 import { DUMMY_NEWS } from "@/lib/mockData/mockNews";
 
-export function getAllNews(): News[] {
-  return DUMMY_NEWS;
+export async function getAllNews(): Promise<News[]> {
+  const response = await fetch(`http://localhost:8080/news`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch news');
+  }
+  const news = await response.json();
+  return news;
+}
+
+export async function getNewsBySlug(slug: string): Promise<News> {
+  const response = await fetch(`http://localhost:8080/news/${slug}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch news');
+  }
+  const news = await response.json();
+  return news;
 }
 
 export function getLatestNews(): News[] {
