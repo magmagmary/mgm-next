@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { News } from "../types";
 import { DUMMY_NEWS } from "@/lib/mockData/mockNews";
 import Image from "next/image";
+import Link from "next/link";
 
 const NewsDetailPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
@@ -18,9 +19,9 @@ const NewsDetailPage = async ({ params }: { params: Promise<{ slug: string }> })
 
   return (
     <article className="flex flex-col gap-4 items-center justify-center h-full max-w-5xl mx-auto">
-      <div className="relative w-full h-100">  
+      <Link href={`/news/${news.slug}/image`} className="relative w-full h-100">  
         <Image src={`/images/${news.image}`} alt={news.title} fill className="object-contain" /> 
-      </div>
+      </Link>
 
       <h1 className="text-4xl font-bold">{news.title}</h1>
       <time className="text-sm text-gray-500">{news.date}</time>
