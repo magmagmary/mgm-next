@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { DUMMY_NEWS } from "@/lib/mockData/mockNews";
 import Image from "next/image";
 import { News } from "@/app/news/types";
-import { Separator } from "@radix-ui/react-separator";
+import { Dialog, DialogHeader, DialogContent ,DialogTitle ,DialogDescription} from "@/components/ui/dialog";
 
 const NewsImagePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
@@ -18,11 +18,17 @@ const NewsImagePage = async ({ params }: { params: Promise<{ slug: string }> }) 
   }
 
   return (
-   <div className='flex flex-col items-center w-full h-full py-8'>
-        <h1 className="text-2xl font-bold">{news.title} (Intercepted Route)</h1>
-        <Separator className="w-full my-8 bg-gray-200 h-0.5" orientation="horizontal" />
-        <Image src={`/images/${news.image}`} alt={news.title} width={500} height={500} className="object-cover" />
-   </div>
+    <Dialog open >
+      <DialogContent showCloseButton={false}>
+        <DialogHeader>
+          <DialogTitle>{news.title}</DialogTitle>
+          <DialogDescription>
+          <Image src={`/images/${news.image}`} alt={news.title} width={500} height={500} className="object-cover my-5" />
+          </DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  
   )
 }
 
