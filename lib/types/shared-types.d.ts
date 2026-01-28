@@ -1,13 +1,4 @@
-export type Post = {
-    id: number;
-    image_url: string;
-    title: string;
-    content: string;
-    created_at: string;
-    user_id: number;
-}
-
-export interface PostRow {
+export interface Post {
     id: number;
     image: string;
     title: string;
