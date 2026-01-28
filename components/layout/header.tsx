@@ -3,8 +3,8 @@ import Image from 'next/image';
 import NavLink from './nav-link';
 
 const navItems = [
-  { href: '/', label: 'Home' },
-] 
+  { href: '/new-post', label: 'New Post' },
+] as const;
 
 const Header = () => {
   return (

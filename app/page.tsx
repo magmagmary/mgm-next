@@ -1,5 +1,5 @@
+import Posts from "@/components/shared/posts";
 import { Separator } from "@radix-ui/react-separator";
-import Posts from "./components/shared/posts";
 
 export default function Home() {
   return (
