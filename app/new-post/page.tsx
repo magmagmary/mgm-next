@@ -2,13 +2,29 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { storePost } from "@/lib/db/posts";
+import { NewPost } from "@/lib/types/shared-types";
+import NewPostSubmitButton from "./components/new-post-submit-button";
 
 export default function NewPostPage() {
+  const createPost = async (formData: FormData) => {
+    'use server';
+
+    const newPost: NewPost = {
+      title: formData.get('title')?.toString() || '',
+      content: formData.get('content')?.toString() || '',
+      imageUrl: formData.get('image')?.toString() || '',
+      userId: 1,
+    }
+
+    await storePost(newPost);
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen p-8">
       <div className="w-full max-w-2xl">
         <h1 className="text-3xl font-bold mb-6">Create a new post</h1>
-        <form className="space-y-6">
+        <form className="space-y-6" action={createPost}>
           <div className="space-y-2">
             <Label htmlFor="title">Title</Label>
             <Input type="text" id="title" name="title" required />
@@ -33,10 +49,8 @@ export default function NewPostPage() {
             <Button type="reset" variant="outline">
               Reset
             </Button>
-            <Button type="submit">
-              Create Post
-            </Button>
-          </div>
+            <NewPostSubmitButton />
+          </div>    
         </form>
       </div>
     </div>

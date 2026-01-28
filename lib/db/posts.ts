@@ -1,5 +1,5 @@
 import sql, { type Database, type RunResult } from 'better-sqlite3';
-import { Post, StorePostInput } from '../types/shared-types';
+import { Post, NewPost } from '../types/shared-types';
 
 const db: Database = new sql('posts.db');
 
@@ -69,7 +69,7 @@ export async function getPosts(maxNumber?: number): Promise<Post[]> {
   return maxNumber ? (stmt.all(maxNumber) as Post[]) : (stmt.all() as Post[]);
 }
 
-export async function storePost(post: StorePostInput): Promise<RunResult> {
+export async function storePost(post: NewPost): Promise<RunResult> {
   const stmt = db.prepare(`
     INSERT INTO posts (image_url, title, content, user_id)
     VALUES (?, ?, ?, ?)`);

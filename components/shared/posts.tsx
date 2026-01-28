@@ -4,27 +4,27 @@ import { Heart } from "lucide-react";
 import Image from "next/image";
 
 function Post({ post }: { post: Post }) {
+  
   return (
-    <article className="post">
-      <div className="post-image">
-        <Image src={post.image_url} alt={post.title} />
+    <article className="border rounded-md p-4">
+      <div className="h-48 w-full ">
+        {/* <Image src={post.image} alt={post.title} /> */}
       </div>
-      <div className="post-content">
+      <div className="mt-4 flex flex-col gap-2">
         <header>
           <div>
-            <h2>{post.title}</h2>
-            <p>
-              Shared by {post.user_id} on{' '}
-              <time dateTime={post.created_at}>
-                {formatDate(post.created_at)}
-              </time>
-            </p>
-          </div>
-          <div>
-            <Heart />
+            <h2 className="text-lg font-bold">{post.title}</h2>
+          
           </div>
         </header>
-        <p>{post.content}</p>
+        <p className="text-gray-700">{post.content}</p>
+            <Heart />
+            <p className="text-sm text-gray-500">
+              Shared by {post.userFirstName} {post.userLastName} on{' '}
+              <time dateTime={post.createdAt}>
+                {formatDate(post.createdAt)}
+              </time>
+            </p>
       </div>
     </article>
   );
@@ -36,7 +36,7 @@ export default function Posts({ posts }: { posts: Post[] }) {
   }
 
   return (
-    <ul className="posts">
+    <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {posts.map((post) => (
         <li key={post.id}>
           <Post post={post} />

@@ -10,7 +10,7 @@ export interface Post {
     isLiked: number; 
   }
   
-  export interface StorePostInput {
+  export interface NewPost {
     imageUrl: string;
     title: string;
     content: string;
