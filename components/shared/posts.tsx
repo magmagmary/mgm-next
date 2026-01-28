@@ -18,7 +18,7 @@ function Post({ post }: { post: Post }) {
           </div>
         </header>
         <p className="text-gray-700">{post.content}</p>
-            <Heart />
+            <Heart className="hover:fill-red-500 cursor-pointer hover:text-red-500"/>
             <p className="text-sm text-gray-500">
               Shared by {post.userFirstName} {post.userLastName} on{' '}
               <time dateTime={post.createdAt}>
