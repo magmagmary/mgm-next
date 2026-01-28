@@ -4,6 +4,7 @@ import NavLink from './nav-link';
 
 const navItems = [
   { href: '/new-post', label: 'New Post' },
+  { href: '/feed', label: 'Feed' },
 ] as const;
 
 const Header = () => {
