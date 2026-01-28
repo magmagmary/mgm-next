@@ -9,7 +9,7 @@ export interface Post {
     userFirstName: string;
     userLastName: string;
     likes: number;
-    isLiked: number; 
+    isLiked: boolean; 
   }
 
   export const NewPostSchema = z.object({

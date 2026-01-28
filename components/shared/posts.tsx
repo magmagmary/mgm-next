@@ -1,10 +1,10 @@
+import HeartIcon from "@/app/new-post/components/heart-icon";
 import type{ Post } from "@/lib/types/shared-types";
 import { formatDate } from "@/lib/utils/date";
-import { Heart } from "lucide-react";
 import Image from "next/image";
 
 function Post({ post }: { post: Post }) {
-  
+
   return (
     <article className="border rounded-md p-4">
       <div className="h-48 w-full relative">
@@ -18,7 +18,7 @@ function Post({ post }: { post: Post }) {
           </div>
         </header>
         <p className="text-gray-700">{post.content}</p>
-            <Heart className="hover:fill-red-500 cursor-pointer hover:text-red-500"/>
+            <HeartIcon postId={post.id} isLiked={post.isLiked} />
             <p className="text-sm text-gray-500">
               Shared by {post.userFirstName} {post.userLastName} on{' '}
               <time dateTime={post.createdAt}>
