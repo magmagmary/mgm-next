@@ -13,7 +13,7 @@ export interface Post {
   }
 
   export const NewPostSchema = z.object({
-    imageUrl: z.string().min(1, 'Image URL is required'),
+    image: z.instanceof(File),
     title: z.string().min(1, 'Title is required'),
     content: z.string().min(1, 'Content is required') ,
     userId: z.number(),

@@ -7,8 +7,8 @@ function Post({ post }: { post: Post }) {
   
   return (
     <article className="border rounded-md p-4">
-      <div className="h-48 w-full ">
-        {/* <Image src={post.image} alt={post.title} /> */}
+      <div className="h-48 w-full relative">
+        <Image src={post.image} alt={post.title} fill className="object-cover"/>
       </div>
       <div className="mt-4 flex flex-col gap-2">
         <header>

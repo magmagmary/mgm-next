@@ -12,7 +12,7 @@ export const createPost = async (_prevState: NewPostState, formData: FormData) =
   const newPost: NewPost = {
     title: formData.get('title')?.toString() || '',
     content: formData.get('content')?.toString() || '',
-    imageUrl: formData.get('image')?.toString() || '',
+    image: formData.get('image') as File || '',
     userId: 1,
   }
 

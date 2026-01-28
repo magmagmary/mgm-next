@@ -1,9 +1,9 @@
 import sql, { type Database, type RunResult } from 'better-sqlite3';
 import { Post, NewPost } from '../types/shared-types';
+import fs from 'node:fs';
+import { randomUUID } from 'node:crypto';
 
 const db: Database = new sql('posts.db');
-
-
 
 function initDb(): void {
   db.exec(`
@@ -49,6 +49,28 @@ function initDb(): void {
   }
 }
 
+const generateRandomUUID = (length: number) => {
+  return randomUUID().substring(0, length);
+}
+
+async function uploadImage(image: File , title: string): Promise<string> {
+  const imageExtension = image.name.split('.').pop();
+   const imageFileName = `${title}-${generateRandomUUID(4)}.${imageExtension}`;
+
+   const imageStream = fs.createWriteStream(`public/images/${imageFileName}`);
+   const buggeredImage =await image.arrayBuffer();
+
+   imageStream.write(Buffer.from(buggeredImage), (error: unknown)=>{
+     if(error){
+      throw new Error('Failed to save image');
+    }
+   });
+
+   imageStream.end();
+   
+   return `/images/${imageFileName}`;
+}
+
 export async function getPosts(maxNumber?: number): Promise<Post[]> {
   let limitClause = '';
 
@@ -70,11 +92,14 @@ export async function getPosts(maxNumber?: number): Promise<Post[]> {
 }
 
 export async function storePost(post: NewPost): Promise<RunResult> {
+
+  const imageUrl = await uploadImage(post.image , post.title);
+
   const stmt = db.prepare(`
     INSERT INTO posts (image_url, title, content, user_id)
     VALUES (?, ?, ?, ?)`);
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  return stmt.run(post.imageUrl, post.title, post.content, post.userId);
+  return stmt.run(imageUrl, post.title, post.content, post.userId);
 }
 
 export async function updatePostLikeStatus(postId: number, userId: number): Promise<RunResult> {
