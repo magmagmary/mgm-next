@@ -3,7 +3,7 @@ import Image from 'next/image';
 import NavLink from './nav-link';
 
 const navItems = [
-  { href: '/', label: 'Home' },
+  { href: '/messages', label: 'Messages' },
 ] 
 
 const Header = () => {

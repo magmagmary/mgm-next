@@ -5,12 +5,12 @@ const MessagesLayout = async ({ children }: { children: React.ReactNode }) => {
   const totalMessages = messages.length;
 
   return (
-    <>
-      <h1>Important Messages</h1>
-      <p>{totalMessages} messages found</p>
+    <div className="flex flex-col gap-4 p-10">
+      <h1 className="text-2xl font-bold text-amber-600">Important Messages</h1>
+      <p className="text-gray-500">{totalMessages} messages found</p>
       <hr />
       {children}
-    </>
+    </div>
   );
 }
 
