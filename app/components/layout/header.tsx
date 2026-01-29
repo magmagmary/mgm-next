@@ -4,6 +4,7 @@ import NavLink from './nav-link';
 
 const navItems = [
   { href: '/messages', label: 'Messages' },
+  { href: '/messages/new', label: 'New Message' },
 ] 
 
 const Header = () => {

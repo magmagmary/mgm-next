@@ -12,18 +12,16 @@ export default function NewMessagePage() {
   }
 
   return (
-    <>
-      <h2>New Message</h2>
-      <form action={createMessage}>
-        <p className="form-control">
+    <div className="flex flex-col gap-4">
+      <h2 className="text-2xl font-bold text-amber-600">New Message</h2>
+      <form action={createMessage} className="flex flex-col gap-4">
+        <p className="text-gray-500 flex flex-col gap-2">
           <label htmlFor="message">Your Message</label>
-          <textarea id="message" name="message" required rows={5} />
+          <textarea id="message" name="message" required rows={5} className="w-full p-2 border border-gray-200 rounded-md" />
         </p>
 
-        <p className="form-actions">
-          <button type="submit">Send</button>
-        </p>
+        <button type="submit" className='bg-amber-600 text-white px-4 py-2 rounded-md w-fit'>Send</button>
       </form>
-    </>backend
+    </div>
   );
 }
