@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { NewPost, NewPostSchema } from "../types/shared-types";
 import { storePost } from "../db/posts";
+import { revalidatePath } from "next/cache";
 
 export type NewPostState = {
   failedFields: string[] | null;
@@ -27,5 +28,7 @@ export const createPost = async (_prevState: NewPostState, formData: FormData) =
 
   await storePost(newPost);
 
+  revalidatePath('/feed');
   redirect('/feed');
+
 }
