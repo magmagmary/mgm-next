@@ -3,6 +3,7 @@ export const getMessages = async () => {
     headers: {
       'X-ID': 'action',
     },
+    cache:'force-cache'
   });
   return response.json();
 }
