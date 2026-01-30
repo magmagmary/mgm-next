@@ -9,13 +9,20 @@ export default function NewMessagePage() {
 
     const message = formData.get('message');
     addMessage(message?.toString() ?? '');
+
     // revalidatePath('/messages');
-    revalidateTag('messages' , 'max');
-    redirect('/messages');
+    // revalidateTag('messages' , 'max');
+    // redirect('/messages');
+
+    // revalidatePath('/db-messages');
+    revalidateTag('db-messages',{
+      expire: 10
+    } );
+    redirect('/db-messages');
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 p-10">
       <h2 className="text-2xl font-bold text-amber-600">New Message</h2>
       <form action={createMessage} className="flex flex-col gap-4">
         <p className="text-gray-500 flex flex-col gap-2">

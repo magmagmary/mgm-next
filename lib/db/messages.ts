@@ -20,7 +20,9 @@ export function addMessage(message: string): void {
 export const getMessages = nextCache(cache(async (): Promise<Message[]> => {
   console.log('********* getting messages from db *********');
   return db.prepare('SELECT * FROM messages').all() as Message[];
-}) , ['messages']);
+}) , ['db-messages'] , {
+  tags: ['db-messages']
+});
 
 initDb();
 
