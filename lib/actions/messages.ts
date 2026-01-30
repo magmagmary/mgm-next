@@ -4,7 +4,8 @@ export const getMessages = async () => {
       'X-ID': 'action',
     },
     next:{
-      revalidate:5
+      revalidate:5,
+      tags: ['messages']
     }
   });
   return response.json();
