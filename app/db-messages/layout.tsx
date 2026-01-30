@@ -1,7 +1,7 @@
 import { getMessages } from "@/lib/db/messages";
 
-const MessagesLayout =  ({ children }: { children: React.ReactNode }) => {
-  const messages = getMessages();
+const MessagesLayout = async ({ children }: { children: React.ReactNode }) => {
+  const messages = await getMessages();
   const totalMessages = messages.length;
 
   return (
