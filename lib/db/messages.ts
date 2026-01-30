@@ -16,6 +16,7 @@ export function addMessage(message: string): void {
 }
 
 export function getMessages(): Message[] {
+  console.log('********* getting messages from db *********');
   return db.prepare('SELECT * FROM messages').all() as Message[];
 }
 
