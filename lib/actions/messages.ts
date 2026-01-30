@@ -3,7 +3,9 @@ export const getMessages = async () => {
     headers: {
       'X-ID': 'action',
     },
-    cache:'force-cache'
+    next:{
+      revalidate:5
+    }
   });
   return response.json();
 }
