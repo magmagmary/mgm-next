@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 :root {
   --radius: 0.625rem;
@@ -88,9 +87,43 @@
   }
 }
 
-@layer utilities {
-  .center {
-    @apply flex items-center justify-center;
-  }
+/* Signup form */
+.auth-form-card {
+  background: oklch(0.19 0 0 / 0.85);
+  border: 1px solid oklch(0.35 0 0);
+  box-shadow:
+    0 0 0 1px oklch(0.3 0 0 / 0.5),
+    0 25px 50px -12px oklch(0 0 0 / 0.6);
 }
-
+.auth-form-card:focus-within {
+  border-color: oklch(0.55 0.2 35 / 0.5);
+  box-shadow:
+    0 0 0 1px oklch(0.55 0.2 35 / 0.2),
+    0 25px 50px -12px oklch(0 0 0 / 0.6);
+}
+.auth-input {
+  background: oklch(0.14 0 0);
+  border-color: oklch(0.28 0 0);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.auth-input::placeholder {
+  color: oklch(0.5 0 0);
+}
+.auth-input:hover {
+  border-color: oklch(0.35 0 0);
+}
+.auth-input:focus {
+  border-color: oklch(0.62 0.21 35);
+  box-shadow: 0 0 0 3px oklch(0.62 0.21 35 / 0.25);
+}
+.auth-submit {
+  background: oklch(0.62 0.21 35);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.auth-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -6px oklch(0.62 0.21 35 / 0.45);
+}
+.auth-submit:active {
+  transform: translateY(0);
+}
