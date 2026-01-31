@@ -12,7 +12,7 @@ export default async function TrainingPage() {
       <h1 className="text-2xl font-bold mb-5">Find your favorite activity</h1>
       <ul id="training-sessions" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {trainingSessions.map((training: Training) => (
-          <li key={training.id} className="flex flex-col items-center justify-center border border-gray-200 rounded-md overflow-hidden">
+          <li key={training.id} className="flex flex-col items-center justify-center border border-gray-900 rounded-md overflow-hidden">
             <div className="relative w-full h-40">
             <Image src={`/trainings${training.image}`} fill alt={training.title} className="object-cover" />
             </div>
