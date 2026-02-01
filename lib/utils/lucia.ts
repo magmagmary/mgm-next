@@ -1,4 +1,4 @@
-import { Cookie, Lucia } from "lucia";
+import { Lucia } from "lucia";
 import { BetterSqlite3Adapter } from "@lucia-auth/adapter-sqlite";
 import db from "../db/db";
 import { cookies } from "next/headers";
@@ -26,8 +26,10 @@ const setSessionCookie = async (sessionId?: string) => {
 
 export const createAuthSession = async (userId: string) => {
     const session = await lucia.createSession(userId, {});
-   
-    setSessionCookie(session.id);
+
+    const sessionCookie =  lucia.createSessionCookie(session.id);
+    const cookieStore = await cookies();
+    cookieStore.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 }
 
 export const verifyUser = async () => {

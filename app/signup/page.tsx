@@ -1,21 +1,18 @@
 'use client';
 
-import { signup, SignupFormState } from "@/lib/actions/auth";
+import { signup, AuthFormState } from "@/lib/actions/auth";
 import Link from "next/link";
 import { useActionState } from "react";
 
-const isValidField = (key:string, formState:SignupFormState) =>{
+const isValidField = (key:string, formState:AuthFormState) =>{
   return !Object.keys(formState.errors || {}).includes(key)
 }
 
 const SignupPage = () => {
 
-  const [formState , formAction] = useActionState<SignupFormState , FormData>(signup, {
+  const [formState , formAction] = useActionState<AuthFormState , FormData>(signup, {
     errors: null
   });
-
-  console.log('formState', formState);
-
 
   return (
     <div className="flex flex-col min-h-full items-center justify-center py-16 px-4 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,oklch(0.35_0.08_35/0.15),transparent)]">

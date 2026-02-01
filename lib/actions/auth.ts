@@ -1,20 +1,20 @@
 'use server';
 
 import { redirect } from "next/navigation";
-import { createUser } from "../db/user";
-import { SignupFormSchema } from "../types/shared-type";
-import { hashUserPassword } from "../utils/hash";
+import { createUser, getUserByEmail } from "../db/user";
+import { AuthFormSchema } from "../types/shared-type";
+import { hashUserPassword, verifyUserPassword } from "../utils/hash";
 import { createAuthSession } from "../utils/lucia";
 
-export type SignupFormState = {
+export type AuthFormState = {
   errors: Record<string, string> | null;
 }
 
-export async function signup(_prevState: SignupFormState, formData: FormData) {
+export async function signup(_prevState: AuthFormState, formData: FormData) {
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
 
-  const { success, error } = SignupFormSchema.safeParse({ email, password });
+  const { success, error } = AuthFormSchema.safeParse({ email, password });
 
   if (!success) {
     return {
@@ -42,6 +42,38 @@ export async function signup(_prevState: SignupFormState, formData: FormData) {
 
     throw error;
   }
+
+}
+
+export async function login(_prevState: AuthFormState, formData: FormData) {
+  const email = formData.get('email') as string;
+  const password = formData.get('password') as string;
+
+  const user = await getUserByEmail(email);
+
+
+  if (!user) {
+    return {
+      errors: {
+        email: 'Email not found, please signup',
+      },
+    }
+  }
+ 
+  const isPasswordValid = verifyUserPassword(user.password, password);
+
+  if (!isPasswordValid) {
+    return {
+      errors: {
+        password: 'Invalid password',
+      },
+    }
+  }
+
+  console.log(">>>>>>" , user);
+
+  await createAuthSession(user.id.toString());
+  redirect('/training');
 
 }
 

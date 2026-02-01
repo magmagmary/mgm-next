@@ -5,8 +5,6 @@ import Image from 'next/image';
 export default async function TrainingPage() {
   const trainingSessions = getTrainings();
 
-  console.log(trainingSessions);
-
   return (
     <main className="flex flex-col items-center justify-center p-4 max-w-5xl mx-auto">
       <h1 className="text-2xl font-bold mb-5">Find your favorite activity</h1>
