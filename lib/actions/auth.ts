@@ -1,6 +1,9 @@
 'use server';
 
+import { redirect } from "next/navigation";
+import { createUser } from "../db/user";
 import { SignupFormSchema } from "../types/shared-type";
+import { hashUserPassword } from "../utils/hash";
 
 export type SignupFormState = {
   errors: Record<string, string> | null;
@@ -21,8 +24,20 @@ export async function signup(_prevState: SignupFormState, formData: FormData) {
     }
   }
 
-  console.log(email, password);
-  return {
-    errors: null,
+  try {
+   await createUser(email, hashUserPassword(password));
+  } catch (error: unknown) {
+
+    if("code" in error && error.code === 'SQLITE_CONSTRAINT_UNIQUE') {
+      return {
+        errors: {
+          email: 'Email already exists',
+        },
+      }
+    }
+
+    throw error;
   }
+
+  redirect('/training');
 }
