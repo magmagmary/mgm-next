@@ -69,6 +69,10 @@ export const verifyUser = async () => {
     // nothing to do here
   }
 
-
   return result;
+}
+
+export const destroyAuthSession = async () => {
+    const cookieStore = await cookies();
+    cookieStore.delete(lucia.sessionCookieName);
 }
