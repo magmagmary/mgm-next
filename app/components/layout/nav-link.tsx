@@ -8,7 +8,7 @@ const currentPath = usePathname();
 
   return (
     <div>
-      <Link href={href} className={`${currentPath === href ? 'text-amber-600' : ''}`}>{label}</Link>
+      <Link href={href} className={`${currentPath === href ? 'text-red-600' : ''}`}>{label}</Link>
     </div>
   )
 }
