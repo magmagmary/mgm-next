@@ -1,7 +1,0 @@
-{
-  "recommendations": [
-    "dbaeumer.vscode-eslint", // ESLint support
-    "esbenp.prettier-vscode", // Prettier formatter
-    "eamodio.gitlens" // Git insights (optional but great)
-  ]
-}

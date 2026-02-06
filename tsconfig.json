@@ -20,9 +20,7 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@/app/*": ["./app/*"],
-      "@/components/*": ["./app/components/*"],
-      "@/lib/types/*": ["./lib/types/*"]
+      "@/components/*": ["./components/*"]
     }
   },
   "include": [
@@ -32,6 +30,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "lib/db/posts.js"  ],
   "exclude": ["node_modules"]
 }
